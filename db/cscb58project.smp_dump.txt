@@ -1,0 +1,24 @@
+
+State Machine - |main|current_state
+Name current_state.STATE_HI1 current_state.STATE_HI3 current_state.STATE_HI2 current_state.STATE_LO3 current_state.STATE_MEH current_state.STATE_LO1 current_state.STATE_MEL current_state.STATE_LO2 current_state.STATE_ME 
+current_state.STATE_ME 0 0 0 0 0 0 0 0 0 
+current_state.STATE_LO2 0 0 0 0 0 0 0 1 1 
+current_state.STATE_MEL 0 0 0 0 0 0 1 0 1 
+current_state.STATE_LO1 0 0 0 0 0 1 0 0 1 
+current_state.STATE_MEH 0 0 0 0 1 0 0 0 1 
+current_state.STATE_LO3 0 0 0 1 0 0 0 0 1 
+current_state.STATE_HI2 0 0 1 0 0 0 0 0 1 
+current_state.STATE_HI3 0 1 0 0 0 0 0 0 1 
+current_state.STATE_HI1 1 0 0 0 0 0 0 0 1 
+
+State Machine - |main|next_state
+Name next_state.STATE_HI1 next_state.STATE_HI3 next_state.STATE_HI2 next_state.STATE_ME next_state.STATE_MEH next_state.STATE_LO1 next_state.STATE_MEL next_state.STATE_LO2 next_state.STATE_LO3 
+next_state.STATE_LO3 0 0 0 0 0 0 0 0 0 
+next_state.STATE_LO2 0 0 0 0 0 0 0 1 1 
+next_state.STATE_MEL 0 0 0 0 0 0 1 0 1 
+next_state.STATE_LO1 0 0 0 0 0 1 0 0 1 
+next_state.STATE_MEH 0 0 0 0 1 0 0 0 1 
+next_state.STATE_ME 0 0 0 1 0 0 0 0 1 
+next_state.STATE_HI2 0 0 1 0 0 0 0 0 1 
+next_state.STATE_HI3 0 1 0 0 0 0 0 0 1 
+next_state.STATE_HI1 1 0 0 0 0 0 0 0 1 
