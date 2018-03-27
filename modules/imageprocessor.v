@@ -7,6 +7,7 @@ module part2
 		CLOCK_50,						//	On Board 50 MHz
 		// Your inputs and outputs here
         KEY,
+        SW,
 		// The ports below are for the VGA output.  Do not change.
 		VGA_CLK,   						//	VGA Clock
 		VGA_HS,							//	VGA H_SYNC
@@ -16,11 +17,16 @@ module part2
 		VGA_R,   						//	VGA Red[9:0]
 		VGA_G,	 						//	VGA Green[9:0]
 		VGA_B,
+		LEDR,
+		HEX0//	VGA Blue[9:0]
 	);
 	
 	input			CLOCK_50;				//	50 MHz
+	input   [9:0]   SW;
 	input   [3:0]   KEY;
 	
+	output [0:0] LEDR;
+
 	// Declare your inputs and outputs here
 	// Do not change the following outputs
 	output			VGA_CLK;   				//	VGA Clock
@@ -31,6 +37,7 @@ module part2
 	output	[9:0]	VGA_R;   				//	VGA Red[9:0]
 	output	[9:0]	VGA_G;	 				//	VGA Green[9:0]
 	output	[9:0]	VGA_B;   				//	VGA Blue[9:0]
+	output   [6:0] HEX0;
 	
 	wire resetn;
 	assign resetn = KEY[0];
@@ -93,16 +100,20 @@ module part2
 	
 	assign x_in = x_reg;
 	assign y_in = y_reg;
-	assign color_in = color_reg;	
+	assign color_in = color_reg;
+	assign LEDR[0] = led;
 	
-	draw_19200bit painter(
-		.clock(CLOCK_50),
-		.x_in(x_in),
-		.y_in(y_in),
-		.color_in(color_in),
-		.x(x),
-		.y(y),
-		.color(colour));
+	
+	datapath d0(.reset_n(resetn),
+					.clock(CLOCK_50),
+					.x_in(x_in),
+					.y_in(y_in),
+					.color_in(color_in),
+					.x(x),
+					.y(y),
+					.color(colour),
+					.HEX0(HEX0)
+					);
 	 
 	// Create an Instance of a VGA controller - there can be only one!
 	// Define the number of colours as well as the initial background
@@ -131,7 +142,7 @@ module part2
 	// Put your code here. Your code should produce signals x,y,colour and writeEn/plot
 	// for the VGA controller, in addition to any other functionality your design may require.
     
-    // Instansiate draw_19200bit
+    // Instansiate datapath
 
 endmodule
 
@@ -150,36 +161,30 @@ module ratedivider_28bit(clock, d, enable);
     end
 endmodule
 
-module image_fms(
-	
-)
-
-endmodule
-
-module draw_19200bit(
+module datapath(reset_n,
 		clock,
 		x_in,
 		y_in,
 		color_in,
 		x,
 		y,
-		color);
-
-	input clock;
+		color,
+		HEX0);
+	
+	input reset_n, clock;
+	output [6:0] HEX0;
 	
 	input [7:0] x_in;
 	input [6:0] y_in;
 	input [19199:0] color_in;
-
-	reg [0:2] color_out; // holds current (x,y) color value
 		
-	output [7:0] x; // outputs
+	output [7:0] x;
 	output [6:0] y;
 	output [2:0] color;
-
 	reg [0:14] count;
+	reg [0:2] color_out;
 
-	always @(posedge clock)
+	always @(posedge clock) // creates curr coordinates for 4x4 from origin (x,y)
 		begin
 		if (count == 19199)
 			count <= 0;
@@ -196,4 +201,22 @@ module draw_19200bit(
 	assign x = x_in + (count % 160);
 	assign y = y_in + (count / 160);
 	
+	segment_decoder sd(
+		.c(x[3:0]),
+		.h(HEX0)
+	);
+endmodule
+
+
+module segment_decoder(c, h);
+	input [3:0] c;
+	output [6:0] h;
+  
+	assign h[0] = (c[0] & ~c[1] & ~c[2] & ~c[3]) | (~c[0] & ~c[1] & c[2] & ~c[3]) | (c[0] & ~c[1] & c[2] & c[3]) | (c[0] & c[1] & ~c[2] & c[3]);
+	assign h[1] = (~c[0] & c[2] & c[3]) | (~c[0] & c[1] & c[2]) | (c[0] & c[1] & c[3]) | (c[0] & ~c[1] & c[2] & ~c[3]);
+	assign h[2] = (~c[0] & c[1] & ~c[2] & ~c[3]) | (~c[0] & c[2] & c[3]) | (c[1] & c[2] & c[3]);
+	assign h[3] = (c[0] & ~c[1] & ~c[2] & ~c[3]) | (~c[0] & ~c[1] & c[2] & ~c[3]) | (c[0] & c[1] & c[2]) | (~c[0] & c[1] & ~c[2] & c[3]);
+	assign h[4] = (c[0] & ~c[3]) | (c[0] & ~c[1] & ~c[2]) | (~c[1] & c[2] & ~c[3]);
+	assign h[5] = (c[0] & ~c[2] & ~c[3]) | (c[1] & ~c[2] & ~c[3]) | (c[0] & c[1] & ~c[3]) | (c[0] & ~c[1] & c[2] & c[3]);
+	assign h[6] = (~c[1] & ~c[2] & ~c[3]) | (~c[0] & ~c[1] & c[2] & c[3]) | (c[0] & c[1] & c[2] & ~c[3]);
 endmodule
