@@ -1,4 +1,3 @@
-
 module main (
 	// Inputs
 	CLOCK_50,
@@ -16,6 +15,14 @@ module main (
 	AUD_XCK,
 	AUD_DACDAT,
 	I2C_SCLK,
+	VGA_CLK,   						//	VGA Clock
+	VGA_HS,							//	VGA H_SYNC
+	VGA_VS,							//	VGA V_SYNC
+	VGA_BLANK_N,					//	VGA BLANK
+	VGA_SYNC_N,						//	VGA SYNC
+	VGA_R,   						//	VGA Red[9:0]
+	VGA_G,	 						//	VGA Green[9:0]
+	VGA_B,
 	HEX0,
 	HEX1,
 	HEX2,
@@ -43,6 +50,15 @@ module main (
 	output				AUD_XCK;
 	output				AUD_DACDAT;
 	output				I2C_SCLK;
+	output 				VGA_CLK;   		//	VGA Clock
+	output 				VGA_HS;			//	VGA H_SYNC
+	output 				VGA_VS;			//	VGA V_SYNC
+	output 				VGA_BLANK_N;	//	VGA BLANK
+	output 				VGA_SYNC_N;		//	VGA SYNC
+	output [9:0] VGA_R;   				//	VGA Red[9:0]
+	output [9:0] VGA_G;	 				//	VGA Green[9:0]
+	output [9:0] VGA_B;   				//	VGA Blue[9:0]
+
     output [17:0] LEDR;
     output [7:0] LEDG;
 	output [6:0] HEX0;
@@ -100,7 +116,7 @@ module main (
 	*                            Combinational Logic                            *
 	*****************************************************************************/
 
-	assign reset = KEY[0];
+	assign resetn = KEY[0];
 
 	wire [31:0] sound = (SW == 0) ? 0 : snd ? 32'd10000000 : -32'd10000000;
 
@@ -114,46 +130,6 @@ module main (
 		buff <= sound;
 	end
 
-	segment_decoder seg0(
-		.c(buff[3:0]),
-		.h(HEX0)
-	);
-
-	segment_decoder seg1(
-		.c(buff[7:4]),
-		.h(HEX1)
-	);
-
-	segment_decoder seg2(
-		.c(buff[11:8]),
-		.h(HEX2)
-	);
-
-	segment_decoder seg3(
-		.c(buff[15:12]),
-		.h(HEX3)
-	);
-
-	segment_decoder seg4(
-		.c(buff[19:16]),
-		.h(HEX4)
-	);
-
-	segment_decoder seg5(
-		.c(buff[23:20]),
-		.h(HEX5)
-	);
-
-	segment_decoder seg6(
-		.c(buff[27:24]),
-		.h(HEX6)
-	);
-
-	segment_decoder seg7(
-		.c(buff[31:28]),
-		.h(HEX7)
-	);
-
 	/*****************************************************************************
 	*                              Internal Modules                             *
 	*****************************************************************************/
@@ -161,7 +137,7 @@ module main (
 	Audio_Controller Audio_Controller (
 		// Inputs
 		.CLOCK_50						(CLOCK_50),
-		.reset						(~reset),
+		.reset						(~resetn),
 
 		.clear_audio_in_memory		(),
 		.read_audio_in				(read_audio_in),
@@ -249,7 +225,7 @@ module main (
 						TRANSITION_ME: next_state <= STATE_ME;
 						TRANSITION_HI: next_state <= STATE_ME;
 						default: next_state <= current_state;
-					endcase
+					endcase  						//
                 end 
             STATE_ME:begin
                     case (transition)
@@ -298,14 +274,66 @@ module main (
     // State Registers
     always @(posedge CLOCK_50)
     begin
-        if(reset == 1'b0)
+        if(resetn == 1'b0)
             current_state <= INITIAL_STATE;
         else
             current_state <= next_state;
     end
 
+	wire [2:0] color;
+	wire [7:0] x;
+	wire [6:0] y;
+
+	reg on_reg;
+
+	always @(posedge CLOCK_50)
+		on_reg <= 1'b1;
+
+	wire on;
+	assign on = on_reg;
+
+	vga_adapter VGA(
+		.resetn(resetn),
+		.clock(CLOCK_50),
+		.colour(color),
+		.x(x),
+		.y(y),
+		.plot(on),
+		/* Signals for the DAC to drive the monitor. */
+		.VGA_R(VGA_R),
+		.VGA_G(VGA_G),
+		.VGA_B(VGA_B),
+		.VGA_HS(VGA_HS),
+		.VGA_VS(VGA_VS),
+		.VGA_BLANK(VGA_BLANK_N),
+		.VGA_SYNC(VGA_SYNC_N),
+		.VGA_CLK(VGA_CLK)
+	);
+	defparam VGA.RESOLUTION = "160x120";
+	defparam VGA.MONOCHROME = "FALSE";
+	defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
+	defparam VGA.BACKGROUND_IMAGE = "black.mif";
+
+	imageprocessor ip(
+		// Input
+		.clock(CLOCK_50),
+		.resetn(resetn),
+		// Output
+		.x(x),
+		.y(y),
+		.color(color)
+	);
+
     // Debugging Output
     assign LEDR[3:0] = current_state;
 	assign LEDG[1:0] = transition;
+	segment_decoder seg0(.c(buff[3:0]), .h(HEX0));
+	segment_decoder seg1(.c(buff[7:4]), .h(HEX1));
+	segment_decoder seg2(.c(buff[11:8]), .h(HEX2));
+	segment_decoder seg3(.c(buff[15:12]), .h(HEX3));
+	segment_decoder seg4(.c(buff[19:16]), .h(HEX4));
+	segment_decoder seg5(.c(buff[23:20]), .h(HEX5));
+	segment_decoder seg6(.c(buff[27:24]), .h(HEX6));
+	segment_decoder seg7(.c(buff[31:28]), .h(HEX7));
 endmodule
 

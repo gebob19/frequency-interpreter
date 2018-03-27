@@ -22,3 +22,13 @@ next_state.STATE_ME 0 0 0 1 0 0 0 0 1
 next_state.STATE_HI2 0 0 1 0 0 0 0 0 1 
 next_state.STATE_HI3 0 1 0 0 0 0 0 0 1 
 next_state.STATE_HI1 1 0 0 0 0 0 0 0 1 
+
+State Machine - |main|imageprocessor:ip|current_state
+Name current_state.STATE_TWO 
+current_state.STATE_ONE 0 
+current_state.STATE_TWO 1 
+
+State Machine - |main|imageprocessor:ip|next_state
+Name next_state.STATE_TWO 
+next_state.STATE_ONE 0 
+next_state.STATE_TWO 1 
