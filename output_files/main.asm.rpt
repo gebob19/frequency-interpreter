@@ -1,5 +1,5 @@
 Assembler report for main
-Tue Mar 27 16:36:24 2018
+Tue Mar 27 17:56:47 2018
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
 
 
@@ -38,7 +38,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Mar 27 16:36:24 2018 ;
+; Assembler Status      ; Successful - Tue Mar 27 17:56:47 2018 ;
 ; Revision Name         ; main                                  ;
 ; Top-level Entity Name ; main                                  ;
 ; Family                ; Cyclone IV E                          ;
@@ -68,8 +68,8 @@ agreement for further details.
 ; Option         ; Setting           ;
 +----------------+-------------------+
 ; Device         ; EP4CE115F29C7     ;
-; JTAG usercode  ; 0x0061EC34        ;
-; Checksum       ; 0x0061EC34        ;
+; JTAG usercode  ; 0x00A2ECB2        ;
+; Checksum       ; 0x00A2ECB2        ;
 +----------------+-------------------+
 
 
@@ -79,14 +79,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
-    Info: Processing started: Tue Mar 27 16:36:20 2018
+    Info: Processing started: Tue Mar 27 17:56:44 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off cscb58project -c main
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 1085 megabytes
-    Info: Processing ended: Tue Mar 27 16:36:24 2018
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 1099 megabytes
+    Info: Processing ended: Tue Mar 27 17:56:47 2018
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
 
 
