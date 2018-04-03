@@ -8,6 +8,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "I2C_SCLK",
+					"strict" : false
+				},
+				{
 					"name" : "VGA_HS",
 					"strict" : false
 				},
@@ -288,7 +292,23 @@
 					"strict" : false
 				},
 				{
+					"name" : "AUD_ADCLRCK",
+					"strict" : false
+				},
+				{
 					"name" : "AUD_DACLRCK",
+					"strict" : false
+				},
+				{
+					"name" : "I2C_SDAT",
+					"strict" : false
+				},
+				{
+					"name" : "SW[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[1]",
 					"strict" : false
 				},
 				{
@@ -297,22 +317,6 @@
 				},
 				{
 					"name" : "SW[3]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[1]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[0]",
-					"strict" : false
-				},
-				{
-					"name" : "CLOCK_50",
-					"strict" : false
-				},
-				{
-					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
@@ -337,6 +341,50 @@
 				},
 				{
 					"name" : "SW[9]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[10]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[11]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[12]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[13]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[14]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[15]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[17]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[16]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_ADCDAT",
 					"strict" : false
 				}
 			]

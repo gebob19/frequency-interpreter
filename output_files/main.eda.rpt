@@ -1,5 +1,5 @@
 EDA Netlist Writer report for main
-Tue Mar 27 17:57:00 2018
+Tue Apr  3 16:35:27 2018
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Tue Mar 27 17:57:00 2018 ;
+; EDA Netlist Writer Status ; Successful - Tue Apr  3 16:35:27 2018 ;
 ; Revision Name             ; main                                  ;
 ; Top-level Entity Name     ; main                                  ;
 ; Family                    ; Cyclone IV E                          ;
@@ -72,14 +72,14 @@ agreement for further details.
 +-----------------------------------------------------------------------------------------------------+
 ; Generated Files                                                                                     ;
 +-----------------------------------------------------------------------------------------------------+
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main_7_1200mv_85c_slow.vo     ;
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main_7_1200mv_0c_slow.vo      ;
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main_min_1200mv_0c_fast.vo    ;
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main.vo                       ;
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main_7_1200mv_85c_v_slow.sdo  ;
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main_7_1200mv_0c_v_slow.sdo   ;
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main_min_1200mv_0c_v_fast.sdo ;
-; /courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/main_v.sdo                    ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main_7_1200mv_85c_slow.vo     ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main_7_1200mv_0c_slow.vo      ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main_min_1200mv_0c_fast.vo    ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main.vo                       ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main_7_1200mv_85c_v_slow.sdo  ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main_7_1200mv_0c_v_slow.sdo   ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main_min_1200mv_0c_v_fast.sdo ;
+; /courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/main_v.sdo                    ;
 +-----------------------------------------------------------------------------------------------------+
 
 
@@ -89,20 +89,20 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
-    Info: Processing started: Tue Mar 27 17:56:54 2018
+    Info: Processing started: Tue Apr  3 16:35:19 2018
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off cscb58project -c main
-Info (204019): Generated file main_7_1200mv_85c_slow.vo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file main_7_1200mv_0c_slow.vo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file main_min_1200mv_0c_fast.vo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file main.vo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file main_7_1200mv_85c_v_slow.sdo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file main_7_1200mv_0c_v_slow.sdo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file main_min_1200mv_0c_v_fast.sdo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
-Info (204019): Generated file main_v.sdo in folder "/courses/courses/cscb58w18/gebotysb/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main_7_1200mv_85c_slow.vo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main_7_1200mv_0c_slow.vo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main_min_1200mv_0c_fast.vo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main.vo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main_7_1200mv_85c_v_slow.sdo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main_7_1200mv_0c_v_slow.sdo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main_min_1200mv_0c_v_fast.sdo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file main_v.sdo in folder "/courses/courses/cscb58w18/chehabom/cscb58project/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 1406 megabytes
-    Info: Processing ended: Tue Mar 27 17:57:01 2018
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 1411 megabytes
+    Info: Processing ended: Tue Apr  3 16:35:27 2018
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:07
 
 

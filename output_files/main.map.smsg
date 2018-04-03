@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at main.v(204): always construct contains both blocking and non-blocking assignments File: /courses/courses/cscb58w18/chehabom/cscb58project/main.v Line: 204
+Warning (10268): Verilog HDL information at main.v(222): always construct contains both blocking and non-blocking assignments File: /courses/courses/cscb58w18/chehabom/cscb58project/main.v Line: 222

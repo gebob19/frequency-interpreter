@@ -1,6 +1,7 @@
 module main (
 	// Inputs
 	CLOCK_50,
+	CLOCK_27,
 	SW,
 	KEY,
 	AUD_ADCDAT,
@@ -36,7 +37,8 @@ module main (
 );
 	// Inputs
 	input				CLOCK_50;
-    input [9:0] SW;
+	input				CLOCK_27;
+    input [17:0] SW;
     input [3:0] KEY;
 	input				AUD_ADCDAT;
 
@@ -86,6 +88,7 @@ module main (
 	wire [19199:0] image;
 	wire [2:0] color_background;
 	wire [2:0] color_foreground;
+	wire is_using_microphone;
 
 	// Internal Registers
 	reg [18:0] delay_cnt;
@@ -104,6 +107,7 @@ module main (
 	assign image = current_image;
 	assign color_background = color_background_reg;
 	assign color_foreground = color_foreground_reg;
+	assign is_using_microphone = SW[17];
 
 	always @(posedge CLOCK_50)
 	begin
@@ -129,10 +133,10 @@ module main (
 
 	wire [31:0] sound = (SW == 0) ? 0 : snd ? 32'd10000000 : -32'd10000000;
 
-	assign read_audio_in			= audio_out_allowed;
-	assign write_audio_out			= audio_out_allowed;
-	assign left_channel_audio_out	= sound;
-	assign right_channel_audio_out	= sound;
+	assign read_audio_in			= audio_in_available & audio_out_allowed;
+	assign left_channel_audio_out	= left_channel_audio_in+sound;
+	assign right_channel_audio_out	= right_channel_audio_in+sound;
+	assign write_audio_out			= audio_in_available & audio_out_allowed;
 
 	always @(posedge tick) 
 	begin
@@ -173,6 +177,14 @@ module main (
 
 		.AUD_XCK					(AUD_XCK),
 		.AUD_DACDAT					(AUD_DACDAT),
+
+	);
+
+	avconf #(.USE_MIC_INPUT(1)) avc (
+		.I2C_SCLK					(I2C_SCLK),
+		.I2C_SDAT					(I2C_SDAT),
+		.CLOCK_50					(CLOCK_50),
+		.reset						(~resetn)
 	);
 
 	/*****************************************************************************
@@ -197,9 +209,15 @@ module main (
 	localparam TRANSITION_LO = 2'b11;
 
     reg [3:0] current_state, next_state;
-    wire [1:0] transition;
+    reg [1:0] transition;
 	
-	assign transition = (frequency + 4) / 5;
+	always @(*)
+	begin
+		if (is_using_microphone == 1'b1)
+			transition <= (right_channel_audio_out / 1073741824);
+		else
+			transition <= (frequency + 4) / 5;
+	end
 
     always @(posedge tick)
     begin: state_table

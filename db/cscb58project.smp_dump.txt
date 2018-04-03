@@ -22,3 +22,9 @@ next_state.STATE_ME 0 0 0 1 0 0 0 0 1
 next_state.STATE_HI2 0 0 1 0 0 0 0 0 1 
 next_state.STATE_HI3 0 1 0 0 0 0 0 0 1 
 next_state.STATE_HI1 1 0 0 0 0 0 0 0 1 
+
+State Machine - |main|avconf:avc|mSetup_ST
+Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001 
+mSetup_ST.0000 0 0 0 
+mSetup_ST.0001 1 0 1 
+mSetup_ST.0010 1 1 0 
