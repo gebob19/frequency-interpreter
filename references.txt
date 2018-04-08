@@ -1,0 +1,5 @@
+Title: Audio Controller source code
+Author: Jonathan Rose
+Date: April 8th 2018
+Availability: http://www.eecg.toronto.edu/~jayar/ece241_08F/AudioVideoCores/audio/audio.html
+
