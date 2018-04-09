@@ -8,6 +8,13 @@
   * We used an Audio Controller developed by Professor Jonathan Rose from U of T, Electrical & Computer Engineering
   * Link: http://www.eecg.toronto.edu/~jayar/ece241_08F/AudioVideoCores/audio/audio.html
   
+# References
+
+Title: Audio Controller source code <br/>
+Author: Jonathan Rose <br/>
+Date: April 8th 2018 <br/>
+Availability: http://www.eecg.toronto.edu/~jayar/ece241_08F/AudioVideoCores/audio/audio.html <br/>
+
 # Controls
 
 * SW[19] is LO: Switches generate frequencies and control transitions
@@ -36,3 +43,5 @@
   * Coordinate of the pixel is determined by the index:
   * X = I % 160
   * Y = I / 160
+  
+
